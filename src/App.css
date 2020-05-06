@@ -1,0 +1,57 @@
+* {
+  font-family: verdana, serif, sans-serif;
+}
+body {
+  background-color: #DEDEDE;
+}
+nav {
+  text-align: right;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav ul li{
+  margin-right: 20px;
+  display: inline;
+}
+section{
+  padding: 120px;
+  justify-content: center;
+}
+.tarjeta {
+  margin-right: auto;
+  margin-left: auto;
+  background-color: white;
+  width: 750px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 2px 3px 0px rgb(0, 0, 0, 0.12);
+}
+
+input, select, textarea{
+  display: block;
+  width: 100%;
+  font-size: 150%;
+}
+form div {
+  text-align: left;
+  margin: 20px;
+  /* margin: 20px 30px 10px 40 px;  arriba derecha abajo izquierda */
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:visited{
+  color: red;
+}
+
+.inputConError {
+border-color: red;
+/* box-shadow: 0px 0px 6px 2px rgb(255, 0, 0); */
+}
