@@ -1,12 +1,11 @@
 import React from 'react';
 
-export default function NavBar () {
+export default function NavBar (props) {
   return (
     <header>
     <nav>
       <ul>
-        <li><a href="registro.html">Registrarse</a></li>
-        <li><a href="contacto.html">Contacto</a></li>
+        {props.links.map(link => <li><a href={link.href}>{link.title}</a></li>)}
       </ul>
     </nav>
     </header>
