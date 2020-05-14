@@ -1,38 +1,27 @@
 import React from 'react';
 import InputLine from './InputLine';
+import SelectLine from './SelectLine';
+import TextareaLine from './TextareaLine';
+
+
+const browsers = [
+  {value: '', label: 'Seleccione...'},
+  {value: 'google_chrome', label: 'Google Chrome'},
+  {value: 'mozilla_firefox', label: 'Mozilla Firefox'},
+  {value: 'opera', label: 'Opera'},
+  {value: 'Microsoft_egde', label: 'Microsoft Egde'},
+];
 
 
 export default function RegisterForm (){
   return (
     <form>
         <InputLine label="Correo" type="email" placeholder="correo@ejemplo.cl" required={true}/>
-        <div>
-          <label>Contrase&ntilde;a</label>
-          <input id="password" type="password" required />
-        </div>
-        <div>
-          <label>Confirmar Contrase&ntilde;a</label>
-          <input id="confirmacion" type="password" required />
-        </div>
-        <div>
-          <label>Navegadores Preferidos</label>
-          <select required >
-            <option value="" disabled selected></option>
-            <option value="google_chrome">Google Chrome</option>
-            <option value="mozilla_firefox">Mozilla Firefox</option>
-            <option value="opera">Opera</option>
-            <option value="Microsoft_egde">Microsoft Egde</option>
-          </select>
-        </div>
-        <div>
-          <label>Edad</label>
-          <input type="number" required />
-
-        </div>
-        <div>
-          <label>Descripci&oacute;n</label>
-          <textarea rows="8"></textarea>
-        </div>
+        <InputLine label="Contrase&ntilde;a" type="password" required={true} minlength="4" maxlength="8" />
+        <InputLine label="Confirmar Contrase&ntilde;a" type="password" required={true} minlength="4" maxlength="8" />
+        <SelectLine Label="Navegadores Preferidos" options={browsers} />
+        <InputLine label="Edad" type="number" min="1" max="150" step="any" required={true}  />
+        <TextareaLine label="Descripci&oacute;n" rows="8" placeholder="Texto de Ejemplo" />
         <div>
           <label>Lenguaje de programaci&oacute;n Preferido</label>
           <input list="lenguajes" />
