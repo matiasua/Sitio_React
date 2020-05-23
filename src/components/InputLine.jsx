@@ -13,7 +13,9 @@ export default function InputLine(props){
     min,
     max,
     step,
-    list
+    list,
+    onChange,
+    name
 
   } = props;
   /*
@@ -27,6 +29,7 @@ export default function InputLine(props){
     <LineField label={label}>
     <input
         type={type}
+        name={name}
         placeholder={placeholder}
         required={required}
         minLength={minLength}
@@ -34,7 +37,8 @@ export default function InputLine(props){
         min={min}
         max={max}
         step={step}
-        list={list && list.id} />
+        list={list && list.id}
+        onChange={(event) => onChange(name, event)} />
       {list &&
          <datalist id={list.id}>
            {list.options.map((option, key) => <option key={key}>{option}</option>)}
