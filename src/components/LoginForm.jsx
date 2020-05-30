@@ -7,10 +7,23 @@ export default class LoginForm extends React.Component{
       email: '',
       password: ''
     }
+  };
+
+  isEmpty = (value) => {
+    if (value === '') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   doLogin = (event) => {
-     console.log(this.state);
+    const { email, password } = this.state.loginData;
+    const emailError = this.isEmpty(email);
+    const passwordError = this.isEmpty(password);
+
+    console.log('Email error:' +emailError);
+    console.log('Password error :' +passwordError);
 
      event.preventDefault();
   }
