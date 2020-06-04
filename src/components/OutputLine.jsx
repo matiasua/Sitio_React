@@ -6,7 +6,7 @@ export default function OutputLine(props) {
 
   return(
     <LineField label={label}>
-      <output>{value}</output>
+      <output> {value} </output>
     </LineField>
   );
 }

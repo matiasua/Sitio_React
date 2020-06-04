@@ -51,7 +51,7 @@ a:visited{
   color: red;
 }
 
-.inputConError {
-border-color: red;
+.inputError {
+  border-color: red; 
 /* box-shadow: 0px 0px 6px 2px rgb(255, 0, 0); */
 }

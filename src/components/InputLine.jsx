@@ -15,7 +15,8 @@ export default function InputLine(props){
     step,
     list,
     onChange,
-    name
+    name,
+    error
 
   } = props;
   /*
@@ -38,7 +39,8 @@ export default function InputLine(props){
         max={max}
         step={step}
         list={list && list.id}
-        onChange={(event) => onChange(name, event)} />
+        onChange={(event) => onChange(name, event)} 
+        className={error ? 'inputError' : undefined} />
       {list &&
          <datalist id={list.id}>
            {list.options.map((option, key) => <option key={key}>{option}</option>)}

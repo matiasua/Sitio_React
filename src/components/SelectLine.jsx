@@ -2,11 +2,16 @@ import React from 'react';
 import LineField from './LineField';
 
 export default function SelectLine(props) {
-   const { label, options, required } = props;
+   const { name, onChange, label, options, required, error } = props;
 
   return(
     <LineField label={label}>
-      <select defaultValue="" required={required}>
+      <select
+        defaultValue=""
+        required={required}
+        onChange={(event) => onChange(name, event)}
+        className={error ? 'inputError' : undefined}
+      >
         {options.map((option, key) => (
           <option
             key={key}

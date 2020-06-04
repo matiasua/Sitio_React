@@ -6,15 +6,22 @@ export default class LoginForm extends React.Component{
     loginData: {
       email: '',
       password: ''
+    },
+    errors:{
+      email: false,
+      password: false
     }
   };
 
+/* Funcion de validacion, revisa si el texto del componente esta vacio o no */
   isEmpty = (value) => {
-    if (value === '') {
+    return value.trim() === '';
+
+    /* if (value === '') {
       return true;
     } else {
       return false;
-    }
+    } */
   }
 
   doLogin = (event) => {
@@ -24,6 +31,14 @@ export default class LoginForm extends React.Component{
 
     console.log('Email error:' +emailError);
     console.log('Password error :' +passwordError);
+
+/* Actualizamos el estado segun las validaciones */
+    this.setState({
+      errors: {
+        email: emailError,
+        password: passwordError
+      }
+    });
 
      event.preventDefault();
   }
@@ -38,10 +53,26 @@ export default class LoginForm extends React.Component{
   }
 
   render (){
+    const { errors } = this.state;
     return (
       <form>
-        <InputLine name="email" label="Correo" title="Correo" type="text" onChange={this.onChange} />
-        <InputLine name="password" label="Contrase&ntilde;a" title="Contrase&ntilde;a" type="password" onChange={this.onChange} />
+        <InputLine
+           name="email"
+           label="Correo"
+           title="Correo"
+           type="text"
+           onChange={this.onChange}
+           error={errors.email}
+           />
+
+        <InputLine
+           name="password"
+           label="Contrase&ntilde;a"
+           title="Contrase&ntilde;a"
+           type="password"
+           onChange={this.onChange}
+           error={errors.password}
+           />
         <button onClick={this.doLogin}>Ingresar</button>
       </form>
     );
