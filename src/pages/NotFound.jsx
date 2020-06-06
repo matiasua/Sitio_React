@@ -6,7 +6,7 @@ import Content from '../components/Content';
 const links = [
   {href: 'Login', title: 'Ingresar'},
   {href: 'Register', title: 'Registrarse'},
-  {href: 'Contacto', title: 'Contacto'}
+  {href: 'contact', title: 'Contacto'}
 ]
 
 

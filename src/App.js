@@ -3,6 +3,7 @@ import './App.css';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
+import Contact from './pages/Contact'
 import {
   BrowserRouter as Router,
   Switch,
@@ -21,6 +22,9 @@ function App() {
        </Route>
        <Route path="/Register">
         <Register />
+       </Route>
+       <Route path="/contact">
+       <Contact />
        </Route>
        <Route path="*">
         <NotFound />

@@ -16,7 +16,8 @@ export default function InputLine(props){
     list,
     onChange,
     name,
-    error
+    error,
+    value
 
   } = props;
   /*
@@ -39,7 +40,8 @@ export default function InputLine(props){
         max={max}
         step={step}
         list={list && list.id}
-        onChange={(event) => onChange(name, event)} 
+        onChange={(event) => onChange(name, event)}
+        value={value}
         className={error ? 'inputError' : undefined} />
       {list &&
          <datalist id={list.id}>

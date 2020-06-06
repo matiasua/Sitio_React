@@ -1,5 +1,6 @@
 import React from 'react';
-import InputLine from './InputLine';
+import InputLine from '../components/InputLine';
+import { validatePassword, validateEmail } from '../utils/validations';
 
 export default class LoginForm extends React.Component{
   state = {
@@ -13,24 +14,19 @@ export default class LoginForm extends React.Component{
     }
   };
 
-/* Funcion de validacion, revisa si el texto del componente esta vacio o no */
-  isEmpty = (value) => {
-    return value.trim() === '';
-
-    /* if (value === '') {
-      return true;
-    } else {
-      return false;
-    } */
+  onChange = (name, event) => {
+    const value = event.target.value;
+    const loginData = Object.assign({}, this.state.loginData);
+    loginData[name]=value
+    this.setState({
+       loginData
+       });
   }
 
   doLogin = (event) => {
     const { email, password } = this.state.loginData;
-    const emailError = this.isEmpty(email);
-    const passwordError = this.isEmpty(password);
-
-    console.log('Email error:' +emailError);
-    console.log('Password error :' +passwordError);
+    const emailError = !validateEmail(email);
+    const passwordError = !validatePassword(password, email);
 
 /* Actualizamos el estado segun las validaciones */
     this.setState({
@@ -43,16 +39,9 @@ export default class LoginForm extends React.Component{
      event.preventDefault();
   }
 
-  onChange = (name, event) => {
-    const value = event.target.value;
-    const loginData = Object.assign({}, this.state.loginData);
-    loginData[name]=value
-    this.setState({
-       loginData
-       });
-  }
 
   render (){
+    const { email, password } = this.state.loginData;
     const { errors } = this.state;
     return (
       <form>
@@ -63,6 +52,7 @@ export default class LoginForm extends React.Component{
            type="text"
            onChange={this.onChange}
            error={errors.email}
+           value={email}
            />
 
         <InputLine
@@ -72,6 +62,7 @@ export default class LoginForm extends React.Component{
            type="password"
            onChange={this.onChange}
            error={errors.password}
+           value={password}
            />
         <button onClick={this.doLogin}>Ingresar</button>
       </form>

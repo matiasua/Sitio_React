@@ -1,8 +1,9 @@
 import React from 'react';
-import InputLine from './InputLine';
-import SelectLine from './SelectLine';
-import TextareaLine from './TextareaLine';
-import OutputLine from './OutputLine';
+import InputLine from '../components/InputLine';
+import SelectLine from '../components/SelectLine';
+import TextareaLine from '../components/TextareaLine';
+import OutputLine from '../components/OutputLine';
+import { validateEmail, isEmpty, validateConfirmation } from '../utils/validations'
 
 
 const browsers = [
@@ -31,7 +32,7 @@ export default class RegisterForm extends React.Component{
       age:'',
       description:'',
       language:'',
-      currentDate:'04/06/2020'
+      currentDate:'05/06/2020'
     },
     errors: {
       email: false,
@@ -43,10 +44,6 @@ export default class RegisterForm extends React.Component{
       language: false,
     }
  };
-
- isEmpty = (value) => {
-   return value.trim() === '';
- }
 
   onChange = (name, event) => {
     const value = event.target.value;
@@ -68,13 +65,13 @@ export default class RegisterForm extends React.Component{
       language
     } = this.state.registerData;
 
-    const emailError = this.isEmpty(email);
-    const passwordError = this.isEmpty(password);
-    const confirmationError = this.isEmpty(confirmation);
-    const browserError = this.isEmpty(browser);
-    const ageError = this.isEmpty(age);
-    const descriptionError = this.isEmpty(description);
-    const languageError = this.isEmpty(language);
+    const emailError = !validateEmail(email);
+    const passwordError = isEmpty(password);
+    const confirmationError = !validateConfirmation(confirmation, password);
+    const browserError = isEmpty(browser);
+    const ageError = isEmpty(age);
+    const descriptionError = isEmpty(description);
+    const languageError = isEmpty(language);
 
 /* Actualizamos el estado segun las validaciones */
     this.setState({
@@ -114,7 +111,8 @@ export default class RegisterForm extends React.Component{
            placeholder="correo@ejemplo.cl"
            required={true}
            onChange={this.onChange}
-           error={errors.email} />
+           error={errors.email}
+           value={email} />
 
         <InputLine
            name="password"
@@ -124,7 +122,8 @@ export default class RegisterForm extends React.Component{
            minLength="4"
            maxLength="8"
            onChange={this.onChange}
-           error={errors.password} />
+           error={errors.password}
+           value={password} />
 
         <InputLine
            name="confirmation"
@@ -134,14 +133,16 @@ export default class RegisterForm extends React.Component{
            maxlength="8"
            required={true}
            onChange={this.onChange}
-           error={errors.confirmation} />
+           error={errors.confirmation}
+           value={confirmation} />
 
         <SelectLine
            name="browser"
            label="Navegadores Preferidos"
            options={browsers}
            onChange={this.onChange}
-           error={errors.browser} />
+           error={errors.browser}
+           value={browser} />
 
         <InputLine
            name="age"
@@ -152,7 +153,8 @@ export default class RegisterForm extends React.Component{
            step="any"
            required={true}
            error={errors.age}
-           onChange={this.onChange}  />
+           onChange={this.onChange}
+           value={age}  />
 
         <TextareaLine
            name="description"
@@ -160,7 +162,8 @@ export default class RegisterForm extends React.Component{
            rows="8"
            placeholder="Texto de Ejemplo"
            error={errors.description}
-           onChange={this.onChange} />
+           onChange={this.onChange}
+           value={description} />
 
         <InputLine
            name="language"
@@ -169,7 +172,8 @@ export default class RegisterForm extends React.Component{
            list={languages}
            required={true}
            error={errors.language}
-           onChange={this.onChange} />
+           onChange={this.onChange}
+           value={language} />
 
         <OutputLine
            name="currentDate"
