@@ -10,7 +10,7 @@ export function validateEmail (value) {
 }
 
 export function validatePassword (value, compareValue){
-  if (this.isEmpty(value)){
+  if (isEmpty(value)){
     return false;
   }
 
@@ -19,6 +19,7 @@ export function validatePassword (value, compareValue){
   }
   return true;
 }
+
 
 /* Funcion de validacion, revisa si el texto del componente esta vacio o no */
 export function isEmpty (value){
@@ -32,7 +33,7 @@ export function isEmpty (value){
 }
 
 export function validateConfirmation (value, compareValue) {
-  if (this.isEmpty(value)) {
+  if (isEmpty(value)) {
     return false;
   }
 
