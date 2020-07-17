@@ -1,8 +1,10 @@
 import React from 'react';
 import InputLine from '../components/InputLine';
 import { validatePassword, validateEmail } from '../utils/validations';
+import { login } from '../api';
+import { withRouter } from 'react-router';
 
-export default class LoginForm extends React.Component{
+ class LoginForm extends React.Component{
   state = {
     loginData: {
       email: '',
@@ -14,6 +16,21 @@ export default class LoginForm extends React.Component{
     }
   };
 
+  doLogin = (event) => {
+    event.preventDefault();
+
+/* Obtengo la respuesta de login y la transformo a texto*/
+    login(this.state.loginData)
+      .then(response => {
+        return response.text();
+      })
+      .then(token => {
+        localStorage.setItem('token', token);
+        this.props.history.push('/deliveries');
+      });
+
+  }
+
   onChange = (name, event) => {
     const value = event.target.value;
     const loginData = Object.assign({}, this.state.loginData);
@@ -23,22 +40,9 @@ export default class LoginForm extends React.Component{
        });
   }
 
-  doLogin = (event) => {
-    const { email, password } = this.state.loginData;
-    const emailError = !validateEmail(email);
-    const passwordError = !validatePassword(password, email);
-
-/* Actualizamos el estado segun las validaciones */
-    this.setState({
-      errors: {
-        email: emailError,
-        password: passwordError
-      }
-    });
-
-     event.preventDefault();
+  newMethod() {
+    return this;
   }
-
 
   render (){
     const { email, password } = this.state.loginData;
@@ -83,3 +87,6 @@ export default function LoginForm(){
   );
 }
 */
+
+
+export default withRouter(LoginForm);

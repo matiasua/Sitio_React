@@ -3,7 +3,10 @@ import './App.css';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import NotFound from './pages/NotFound';
-import Contact from './pages/Contact'
+import Contact from './pages/Contact';
+import Deliveries from './pages/Deliveries';
+import Logout  from './pages/Logout';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,6 +28,12 @@ function App() {
        </Route>
        <Route path="/contact">
        <Contact />
+       </Route>
+       <Route path="/deliveries">
+       <Deliveries />
+       </Route>
+       <Route path="/logout">
+       <Logout />
        </Route>
        <Route path="*">
         <NotFound />
